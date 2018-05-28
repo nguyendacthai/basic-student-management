@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app="myApp" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+<!--<a href ui-sref="student-management">student</a>-->
+<ui-view></ui-view>
+</body>
+</html>
+
+<script src="jquery-3.3.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="angular.min.js"></script>
+<script src="angular-ui-router.min.js"></script>
+<script src="ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="angular-messages.min.js"></script>
+<script>
+    var myApp = angular.module("myApp", ['ui.router', 'ui.bootstrap']);
+</script>
+<script src="routes/class-management.route.js"></script>
+<script src="routes/student-management.route.js"></script>
+<script src="services/class-management.service.js"></script>
+<script src="controllers/student-management.controller.js"></script>
+<script src="controllers/class-management.controller.js"></script>

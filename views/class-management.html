@@ -1,0 +1,80 @@
+<div class="container" ng-controller="classController" ng-init="ngOnInit()">
+    <form novalidate ng-submit="createClass($event)" name="addClassForm">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" ng-model="name" name="className" required>
+            <ul ng-if="(addClassForm.className.$dirty || addClassForm.$submitted) && addClassForm.className.$invalid">
+                <li style="color: red">Name is required</li>
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <label>Majors:</label>
+            <select class="form-control"
+                    ng-options="item.label as item.label for item in items" ng-model="major"
+                    name="classMajors"
+                    required>
+            </select>
+            <ul ng-if="(addClassForm.classMajors.$dirty || addClassForm.$submitted) && addClassForm.classMajors.$invalid">
+                <li style="color: red">Majors is required</li>
+            </ul>
+        </div>
+
+        <button type="submit" class="btn btn-success">Add</button>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Majors</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="class in classes">
+            <td>{{class.id}}</td>
+            <td>{{class.name}}</td>
+            <td>{{class.majors}}</td>
+            <td>
+                <button class="btn btn-primary" ng-click="showModal(class.id)">Show</button>
+                <button class="btn btn-danger" ng-click="removeClass(class.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/ng-template" id="class-modal.html">
+
+    <form novalidate ng-submit="updateClass($event)" name="updateClassForm">
+        <div class="panel panel-default">
+            <div class="panel-heading">Class view</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" class="form-control" ng-model="editClassModel.name" name="classNameModal" required>
+                    <ul>
+                        <li ng-if="updateClassForm.classNameModal.$error.required" style="color: red">Name is required</li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label>Majors:</label>
+                    <select class="form-control" ng-options="item.label as item.label for item in items" ng-model="editClassModel.major" name="classMajorsModal" required>
+                    </select>
+                    <ul>
+                        <li ng-if="updateClassForm.classMajorsModal.$error.required" style="color: red">Majors is required</li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="btn btn-success" ng-disabled="updateClassForm.$invalid">Save</button>
+                <button type="button" class="btn btn-primary" ng-click="cancelModal.dismiss()">Cancel</button>
+            </div>
+        </div>
+
+    </form>
+
+</script>

@@ -1,0 +1,50 @@
+<div class="container" ng-controller="studentController">
+    <div>
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" ng-model="name">
+        </div>
+
+        <div class="form-group">
+            <label>Age:</label>
+            <input type="number" class="form-control" ng-model="age">
+        </div>
+
+        <form class="form-group">
+            <label>Gender:</label>
+            <div>
+                <label class="radio-inline">
+                    <input type="radio" ng-model="gender" value="M">Male
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" ng-model="gender" value="F">FeMale
+                </label>
+            </div>
+        </form>
+
+        <button type="submit" class="btn btn-success" ng-click="add()">Add</button>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="user in users">
+            <td>{{user.Name}}</td>
+            <td>{{user.Age}}</td>
+            <td>{{user.Gender}}</td>
+            <td>
+                <button class="btn btn-info" ng-click="view(user)">View</button>
+                <button class="btn btn-danger" ng-click="remove(user)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
